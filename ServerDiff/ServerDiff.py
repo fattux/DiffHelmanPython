@@ -10,11 +10,11 @@ from time import sleep
 from simplecrypt import encrypt, decrypt
 import os
 
-IpServer01 =""
+IpServer =""
 
 menu = {}
 menu['1']="Servidor01" 
-menu['2']="Servidor02"
+#menu['2']="Servidor02"
 menu['3']="Iniciar codigo"
 menu['4']="Sair"
 
@@ -29,21 +29,35 @@ while True:
     if selection =='1': 
       os.system("cls")  
       print "================================="
-      print "SERVIDOR"
+      print "TESTANDO SERVIDORES"
       print "127.0.0.1"
-      print "ADICIONADO"
-      print "================================="
-
-    elif selection =='2': 
-      os.system("cls")
-      print "================================="
-      print "SERVIDOR"
+      print "OU"
       print "127.0.0.2"
-      print "ADICIONADO"
+      os.system("timeout 5")
+      #print "ADICIONADO"
       print "================================="
+      IpServer = "0.0.0.0"
+      rep = os.system('ping ' + IpServer)
+      if rep is not 0:
+          print "================================="
+          print "Server Down"
+          print "================================="
+      else:
+          print "================================="
+          print "Server UP"
+          print "================================="
 
+#    elif selection =='2': 
+#      os.system("cls")
+#      print "================================="
+#      print "SERVIDOR"
+#      print "127.0.0.2"
+#      print "ADICIONADO"
+#      print "================================="
+#      IpServer ="127.0.0.2"
     elif selection =='3':
       os.system("cls")
+      print "Servidor Selecionado ::: *", IpServer
       # Gerar o valor de "b" aleatoriamente
 
       taman_chave = 16-1
