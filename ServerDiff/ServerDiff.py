@@ -8,6 +8,7 @@ import random
 from Crypto.Cipher import AES
 from time import sleep
 from simplecrypt import encrypt, decrypt
+import os
 
 IpServer01 =""
 
@@ -24,15 +25,25 @@ while True:
         print entry, menu[entry]
 
     selection=raw_input("Simular entrada de servidor:") 
+
     if selection =='1': 
-      print "Servidor 1 add"
+      os.system("cls")  
+      print "================================="
+      print "SERVIDOR"
+      print "127.0.0.1"
+      print "ADICIONADO"
+      print "================================="
 
     elif selection =='2': 
-
-      print "Servidor 2 add2"
+      os.system("cls")
+      print "================================="
+      print "SERVIDOR"
+      print "127.0.0.2"
+      print "ADICIONADO"
+      print "================================="
 
     elif selection =='3':
-
+      os.system("cls")
       # Gerar o valor de "b" aleatoriamente
 
       taman_chave = 16-1
@@ -129,4 +140,4 @@ while True:
     elif selection == '4': 
       break
     else: 
-      print "Unknown Option Selected!" 
+      print "Comando nao reconhecido" 
