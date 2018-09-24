@@ -9,11 +9,8 @@ from time import sleep
 import random
 from simplecrypt import encrypt, decrypt
 
-IPsvr1 = ''
-IPsvr2 = ''
 
 # Gerar os valores para "a" e "b" aleatoriamente
-
 taman_chave = 16-1
 chavea = (2**taman_chave)
 a = random.randrange(1, chavea)
