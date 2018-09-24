@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2019
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DiffHelman", "DiffHelman\DiffHelman.pyproj", "{93477FA4-4574-4250-B628-C656A488830D}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Solucao1S", "Solucao1Client\Solucao1S.pyproj", "{2F4FFA13-EA34-4048-B437-46821A375EDF}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Solucao1C", "Solucao1Server\Solucao1C.pyproj", "{2F986AD0-9588-40D6-80C5-CF781F51B8CE}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ClientDiff", "ClientDiff\ClientDiff.pyproj", "{86A2BAE9-E102-432E-B211-37518E77FBF4}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ServerDiff", "ServerDiff\ServerDiff.pyproj", "{E8321F76-53D7-492B-B571-E3F44B549156}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{93477FA4-4574-4250-B628-C656A488830D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93477FA4-4574-4250-B628-C656A488830D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F4FFA13-EA34-4048-B437-46821A375EDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F4FFA13-EA34-4048-B437-46821A375EDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F986AD0-9588-40D6-80C5-CF781F51B8CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F986AD0-9588-40D6-80C5-CF781F51B8CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86A2BAE9-E102-432E-B211-37518E77FBF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86A2BAE9-E102-432E-B211-37518E77FBF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8321F76-53D7-492B-B571-E3F44B549156}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8321F76-53D7-492B-B571-E3F44B549156}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F6CFAF72-62FB-44D8-9E3E-26E34CE6D556}
+	EndGlobalSection
+EndGlobal
