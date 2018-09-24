@@ -1,1 +1,1 @@
-# DiffHelmanPython
+# DiffieHellmanPython
