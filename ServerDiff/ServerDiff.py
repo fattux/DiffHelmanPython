@@ -10,148 +10,94 @@ from time import sleep
 from simplecrypt import encrypt, decrypt
 import os
 
-IpServer =""
+# Gerar o valor de "b" aleatoriamente
 
-menu = {}
-menu['1']="Servidor01" 
-#menu['2']="Servidor02"
-menu['3']="Iniciar codigo"
-menu['4']="Sair"
+taman_chave = 16-1
+chaveb = random.randrange (2**taman_chave)
+b = random.randrange(1, chaveb)
+print 'Valor de "b" = ', b
 
-while True:
-    options=menu.keys()
-    options.sort()
-    for entry in options:
-        print entry, menu[entry]
+###############################################################
+# Recebe os Valores de "P", "G" e "A"
+server = ('127.0.0.1',50000)
+size = 2048
+backlog = 5
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.bind (server)
+sock.listen (backlog)
+connection, client = sock.accept()
+print >>sys.stderr, 'Conectado', client
+while 1:
+	#print >>sys.stderr, 'Aguardando Conexão'
+	#try:
+	#print 'Aguardando recebimento dos valores P,G e A '
+	data = connection.recv(size)
+	if not data: break
+	data = pickle.loads(data)
+	P = int(data[0])
+	G = int(data[1])
+	A = int(data[2])
+	connection.close
+###############################################################
+print "P = ", P
+print "G = ", G
+print "A = ", A
 
-    selection=raw_input("Simular entrada de servidor:") 
+#####################
+B = 0
+B = ((G**b) % P)
+#####################
 
-    if selection =='1': 
-      os.system("cls")  
-      print "================================="
-      print "TESTANDO SERVIDORES"
-      print "127.0.0.1"
-      print "OU"
-      print "127.0.0.2"
-      os.system("timeout 5")
-      #print "ADICIONADO"
-      print "================================="
-      IpServer = "0.0.0.0"
-      rep = os.system('ping ' + IpServer)
-      if rep is not 0:
-          print "================================="
-          print "Server Down"
-          print "================================="
-      else:
-          print "================================="
-          print "Server UP"
-          print "================================="
+sleep (2)
 
-#    elif selection =='2': 
-#      os.system("cls")
-#      print "================================="
-#      print "SERVIDOR"
-#      print "127.0.0.2"
-#      print "ADICIONADO"
-#      print "================================="
-#      IpServer ="127.0.0.2"
-    elif selection =='3':
-      os.system("cls")
-      print "Servidor Selecionado ::: *", IpServer
-      # Gerar o valor de "b" aleatoriamente
+print 'Valor de B - ', B
+B = str(B)
+###############################################################
+# envia o valor de B para cliente A
+sleep (2)
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_address = ('127.0.0.1', 40000)
+sock.connect(server_address)
+msgb = ([B,])
+msgb = pickle.dumps(msgb)
+sock.send(msgb)
+###############################################################
 
-      taman_chave = 16-1
-      chaveb = random.randrange (2**taman_chave)
-      b = random.randrange(1, chaveb)
-      print 'Valor de "b" = ', b
+Kb = 0
+Kb = ((A**b)% P)
 
-      ###############################################################
-      # Recebe os Valores de "P", "G" e "A"
-      server = ('127.0.0.1',50000)
-      size = 2048
-      backlog = 5
-      sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-      sock.bind (server)
-      sock.listen (backlog)
-      connection, client = sock.accept()
-      print >>sys.stderr, 'Conectado', client
-      while 1:
-          #print >>sys.stderr, 'Aguardando Conexão'
-          #try:
-          #print 'Aguardando recebimento dos valores P,G e A '
-          data = connection.recv(size)
-          if not data: break
-          data = pickle.loads(data)
-          P = int(data[0])
-          G = int(data[1])
-          A = int(data[2])
-      connection.close
-      ###############################################################
-      print "P = ", P
-      print "G = ", G
-      print "A = ", A
-
-      #####################
-      B = 0
-      B = ((G**b) % P)
-      #####################
-
-      sleep (2)
-
-      print 'Valor de B - ', B
-      B = str(B)
-      ###############################################################
-      # envia o valor de B para cliente A
-      sleep (2)
-      sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-      server_address = ('127.0.0.1', 40000)
-      sock.connect(server_address)
-      msgb = ([B,])
-      msgb = pickle.dumps(msgb)
-      sock.send(msgb)
-      ###############################################################
-
-      Kb = 0
-      Kb = ((A**b)% P)
-
-      print 'Kb = ', Kb
-      Kb = str(Kb)
-      print ("")
-      print ("Valor de Kb string - ", Kb)
-      print ("")
-      ###############################################################
-      # Recebe a Mensagem Encriptada para Descriptografar"
-      server = ('127.0.0.1',30000)
-      size = 2048
-      backlog = 5
-      sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-      sock.bind (server)
-      sock.listen (backlog)
-      sock, client = sock.accept()
-      print >>sys.stderr, 'Conectado', client
-      dados = sock.recv(size)
-      print "Mensagem Cryptografada :: >>> " ,dados
-      sleep (5)
-      mensagema = decrypt(Kb,dados)
-      mensagem = ' Mensagem Recebida...'
-      connection.send(mensagem)
-      print "Mensagem recebida : > ",mensagema
-      #if not dados: break
-      sock.send('Mensagem Recebida...!')
-      sock.close
-      ###############################################################
-      ##print data
-      #p#rint ' '
-      #print Kb
-      #sleep (5)
-      #mensagema = decrypt(Kb, dados) 
-      #sleep (3)
-      #print ' ' 
-      #print mensagema
-      #sleep (2)
-
- 
-    elif selection == '4': 
-      break
-    else: 
-      print "Comando nao reconhecido" 
+print 'Kb = ', Kb
+Kb = str(Kb)
+print ("")
+print ("Valor de Kb string - ", Kb)
+print ("")
+###############################################################
+# Recebe a Mensagem Encriptada para Descriptografar"
+server = ('127.0.0.1',30000)
+size = 2048
+backlog = 5
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.bind (server)
+sock.listen (backlog)
+sock, client = sock.accept()
+print >>sys.stderr, 'Conectado', client
+dados = sock.recv(size)
+print "Mensagem Cryptografada :: >>> " ,dados
+sleep (5)
+mensagema = decrypt(Kb,dados)
+mensagem = ' Mensagem Recebida...'
+connection.send(mensagem)
+print "Mensagem recebida : > ",mensagema
+#if not dados: break
+sock.send('Mensagem Recebida...!')
+sock.close
+###############################################################
+##print data
+#p#rint ' '
+#print Kb
+#sleep (5)
+#mensagema = decrypt(Kb, dados) 
+#sleep (3)
+#print ' ' 
+#print mensagema
+#sleep (2)
