@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+print "##############################"
 print "SERVER"
+print "##############################"
 import socket, pickle
 import sys
 import codecs
@@ -9,6 +11,8 @@ from Crypto.Cipher import AES
 from time import sleep
 from simplecrypt import encrypt, decrypt
 import os
+
+IpServer = "127.0.0.1"
 
 # Gerar o valor de "b" aleatoriamente
 
@@ -19,7 +23,7 @@ print 'Valor de "b" = ', b
 
 ###############################################################
 # Recebe os Valores de "P", "G" e "A"
-server = ('127.0.0.1',50000)
+server = (IpServer ,50000)
 size = 2048
 backlog = 5
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -56,7 +60,7 @@ B = str(B)
 # envia o valor de B para cliente A
 sleep (2)
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server_address = ('127.0.0.1', 40000)
+server_address = (IpServer, 40000)
 sock.connect(server_address)
 msgb = ([B,])
 msgb = pickle.dumps(msgb)
@@ -73,7 +77,7 @@ print ("Valor de Kb string - ", Kb)
 print ("")
 ###############################################################
 # Recebe a Mensagem Encriptada para Descriptografar"
-server = ('127.0.0.1',30000)
+server = (IpServer,30000)
 size = 2048
 backlog = 5
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

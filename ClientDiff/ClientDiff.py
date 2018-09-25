@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+print "##############################"
 print "CLIENTE"
+print "##############################"
 import socket,pickle
 import sys
 import codecs
@@ -10,9 +12,12 @@ import random
 from simplecrypt import encrypt, decrypt
 import os
 
+#IP DO SERVIDOR SELECIONADO PELO TESTE
+###############################
+IpServer =""
+###############################
 menu = {}
 menu['1']="Teste de conexao com servidores" 
-#menu['2']="Servidor02"
 menu['3']="Iniciar codigo"
 menu['4']="Sair"
 
@@ -24,7 +29,7 @@ while True:
 
     selection=raw_input("Simular entrada de servidor:") 
 
-    if selection =='1': 
+    if selection =='1':        
       os.system("cls")  
       print "================================="
       print "TESTANDO SERVIDORES"
@@ -47,7 +52,7 @@ while True:
           print "================================="
           IpServer = "127.0.0.1"
 
-      resposta2 = os.system('ping ' + "127.0.0.2")
+      resposta2 = os.system('ping ' + "0.0.0.0")
       if resposta2 is not 0:
           print "================================="
           print "Server Down"
@@ -56,16 +61,8 @@ while True:
           print "================================="
           print "Server UP"
           print "================================="
-          IpServer = "127.0.0.2"
+          IpServer = "0.0.0.0"
 
-#    elif selection =='2': 
-#      os.system("cls")
-#      print "================================="
-#      print "SERVIDOR"
-#      print "127.0.0.2"
-#      print "ADICIONADO"
-#      print "================================="
-#      IpServer ="127.0.0.2"
     elif selection =='3':
       os.system("cls")
       print "Servidor Selecionado ::: *", IpServer
@@ -180,5 +177,5 @@ while True:
       sleep (2)
       ##################################################################################
 
-
-os.system("exit")
+    elif selection =='4':
+      break
