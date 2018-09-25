@@ -23,7 +23,7 @@ print 'Valor de "b" = ', b
 
 ###############################################################
 # Recebe os Valores de "P", "G" e "A"
-server = (IpServer ,50000)
+server = (IpServer ,7000)
 size = 2048
 backlog = 5
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
