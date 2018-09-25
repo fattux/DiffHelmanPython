@@ -12,6 +12,8 @@ import random
 from simplecrypt import encrypt, decrypt
 import os
 
+IpServer =""
+
 #IP DO SERVIDOR SELECIONADO PELO TESTE
 ###############################
 IpServer =""
@@ -41,7 +43,7 @@ while True:
       #print "ADICIONADO"
       print "================================="
       
-      resposta = os.system('ping ' + "127.0.0.1")
+      resposta = os.system('ping ' + "127.0.0.10")
       if resposta is not 0:
           print "================================="
           print "Server Down"
@@ -50,7 +52,7 @@ while True:
           print "================================="
           print "Server UP"
           print "================================="
-          IpServer = "127.0.0.1"
+          IpServer = "127.0.0.10"
 
       resposta2 = os.system('ping ' + "0.0.0.0")
       if resposta2 is not 0:
@@ -110,7 +112,7 @@ while True:
       # Enviar os valores de "P", "G" e "A"
 
       sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-      server_address = ('127.0.0.1', 50000)
+      server_address = (IpServer, 50000)
       sock.connect(server_address)
       P = str(P)
       G = str(G)
@@ -122,7 +124,7 @@ while True:
 
       ##################################################################################
       # Recebe o valor de B
-      server = ('127.0.0.1',40000)
+      server = (IpServer,40000)
       size = 2048
       backlog = 5
       sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -167,7 +169,7 @@ while True:
       ##################################################################################
       # Enviar Mensagem para B
       sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-      server_address = ('127.0.0.1', 30000)
+      server_address = (IpServer, 30000)
       sock.connect(server_address)
       sock.send(msgenvia)
       sleep (2)

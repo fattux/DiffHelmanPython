@@ -12,7 +12,7 @@ from time import sleep
 from simplecrypt import encrypt, decrypt
 import os
 
-IpServer = "127.0.0.1"
+IpServer = "127.0.0.10"
 
 # Gerar o valor de "b" aleatoriamente
 
